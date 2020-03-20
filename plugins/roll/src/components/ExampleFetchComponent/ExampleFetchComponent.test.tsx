@@ -14,17 +14,13 @@
  * limitations under the License.
  */
 
-const rollup = require('rollup'); // "import" is not working for some reason...
-import rollupConfig from './rollup.config';
+import React from 'react';
+import { render } from '@testing-library/react';
+import ExampleFetchComponent from './ExampleFetchComponent';
 
-export default async () => {
-  const inputOptions = {
-    input: rollupConfig.input,
-    plugins: rollupConfig.plugins,
-  };
-  const outputOptions = rollupConfig.output;
-
-  const bundle = await rollup.rollup(inputOptions);
-  await bundle.generate(outputOptions);
-  await bundle.write(outputOptions);
-};
+describe('ExampleFetchComponent', () => {
+  it('should render', () => {
+    const rendered = render(<ExampleFetchComponent />);
+    expect(rendered.getByTestId('progress')).toBeInTheDocument();
+  });
+});

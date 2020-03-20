@@ -14,17 +14,4 @@
  * limitations under the License.
  */
 
-const rollup = require('rollup'); // "import" is not working for some reason...
-import rollupConfig from './rollup.config';
-
-export default async () => {
-  const inputOptions = {
-    input: rollupConfig.input,
-    plugins: rollupConfig.plugins,
-  };
-  const outputOptions = rollupConfig.output;
-
-  const bundle = await rollup.rollup(inputOptions);
-  await bundle.generate(outputOptions);
-  await bundle.write(outputOptions);
-};
+import '@testing-library/jest-dom/extend-expect';

@@ -14,17 +14,19 @@
  * limitations under the License.
  */
 
-const rollup = require('rollup'); // "import" is not working for some reason...
-import rollupConfig from './rollup.config';
+import React from 'react';
+import { render } from '@testing-library/react';
+import ExampleComponent from './ExampleComponent';
+import { ThemeProvider } from '@material-ui/core';
+import { BackstageTheme } from '@spotify-backstage/core';
 
-export default async () => {
-  const inputOptions = {
-    input: rollupConfig.input,
-    plugins: rollupConfig.plugins,
-  };
-  const outputOptions = rollupConfig.output;
-
-  const bundle = await rollup.rollup(inputOptions);
-  await bundle.generate(outputOptions);
-  await bundle.write(outputOptions);
-};
+describe('ExampleComponent', () => {
+  it('should render', () => {
+    const rendered = render(
+      <ThemeProvider theme={BackstageTheme}>
+        <ExampleComponent />
+      </ThemeProvider>,
+    );
+    expect(rendered.getByText('Welcome to roll!')).toBeInTheDocument();
+  });
+});
