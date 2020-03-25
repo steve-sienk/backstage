@@ -30,13 +30,13 @@ export default {
   },
 
   plugins: [
+    peerDepsExternal(),
     resolve(),
-    postcss(),
     commonjs({
       include: ['node_modules/**', '../../node_modules/**'],
       exclude: ['**/*.stories.js'],
     }),
-    peerDepsExternal(),
+    postcss(),
     image(),
     typescript(),
   ],
