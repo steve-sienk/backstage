@@ -27,8 +27,6 @@ import pluginBuild from './commands/plugin/build';
 import pluginServe from './commands/plugin/serve';
 import { exitWithError } from './helpers/errors';
 
-console.log(`DEBUG: hello!`);
-
 const main = (argv: string[]) => {
   const packageJson = JSON.parse(fs.readFileSync('package.json', 'utf-8'));
 
